@@ -1,3 +1,15 @@
+# v1.3.0 (Tue Oct 12 2021)
+
+#### 🚀 Enhancement
+
+- Put react as a peerDependency. [#18](https://github.com/gisat-panther/ptr-components/pull/18) ([@vdubr](https://github.com/vdubr))
+
+#### Authors: 1
+
+- Vojtěch Dubrovský ([@vdubr](https://github.com/vdubr))
+
+---
+
 # v1.2.4 (Mon Jul 12 2021)
 
 #### 🐾 Patch
