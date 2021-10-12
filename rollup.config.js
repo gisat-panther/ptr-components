@@ -1,4 +1,4 @@
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import filesize from 'rollup-plugin-filesize';
 import path from 'path';
@@ -30,6 +30,7 @@ export default {
 		'@gisatcz/ptr-atoms',
 		'@gisatcz/ptr-locales',
 		'react-rnd',
+		/@babel\/runtime/,
 		...lodashExternal,
 	],
 	output: {
@@ -47,6 +48,7 @@ export default {
 	plugins: [
 		babel({
 			plugins: ['lodash'],
+			babelHelpers: 'runtime',
 		}),
 		commonjs({
 			include: 'node_modules/**',
