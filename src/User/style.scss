@@ -1,10 +1,11 @@
+@use 'sass:math';
 @import '~@gisatcz/ptr-core/lib/styles/_variables';
 
 .ptr-user {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
-	height: m(5/3);
+	height: m(math.div(5, 3));
 }
 
 .ptr-user > div {
@@ -19,7 +20,7 @@
 .ptr-user-name,
 .ptr-user-login {
 	display: flex;
-	height: m(4/3);
+	height: m(math.div(4, 3));
 	padding: 0.25rem;
 	font-size: $a1;
 	white-space: nowrap;
