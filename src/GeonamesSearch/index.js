@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React, {useState} from 'react';
 import {ReactSearchAutocomplete} from 'react-search-autocomplete';
 import {fetchGeonames} from './helpers';
+import {geonamesApiKey, geonamesApiUrl} from './constants';
+
 import './style.scss';
 
 const SuggestionItem = ({name, description}) => {
@@ -17,8 +19,8 @@ const SuggestionItem = ({name, description}) => {
 
 const GeonamesSearch = ({
 	onPlaceSelect,
-	apiKey = 'pavel.vlach',
-	apiUrl = 'http://api.geonames.org/searchJSON',
+	apiKey = geonamesApiKey,
+	apiUrl = geonamesApiUrl,
 }) => {
 	const [items, onItemsChange] = useState([]);
 
@@ -36,7 +38,7 @@ const GeonamesSearch = ({
 		<div className="ptr-GeonamesSearch">
 			<ReactSearchAutocomplete
 				items={items}
-				inputDebounce={200}
+				inputDebounce={50}
 				onSearch={handleOnSearch}
 				onSelect={handleOnSelect}
 				formatResult={SuggestionItem}
@@ -48,7 +50,7 @@ const GeonamesSearch = ({
 GeonamesSearch.propTypes = {
 	apiKey: PropTypes.string,
 	apiUrl: PropTypes.string,
-	onPlaceSelect: PropTypes.func,
+	onPlaceSelect: PropTypes.func.isRequired,
 };
 
 export default GeonamesSearch;
