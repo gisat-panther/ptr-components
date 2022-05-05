@@ -1,0 +1,19 @@
+@import '~@gisatcz/ptr-core/lib/styles/_variables';
+
+.ptr-GeonamesSearch {
+  max-width: 20rem;
+}
+
+.ptr-GeonamesSearch > div > .wrapper {
+  background: var(--base05);
+}
+
+// Suggestion Item
+.ptr-GeonamesSearchSuggestionItem-name {
+  font-size: $a1;
+  font-weight: bold;
+}
+
+.ptr-GeonamesSearchSuggestionItem-description {
+  font-size: $b1;
+}
