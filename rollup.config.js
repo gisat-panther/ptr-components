@@ -30,6 +30,7 @@ export default {
 		'@gisatcz/ptr-atoms',
 		'@gisatcz/ptr-locales',
 		'react-rnd',
+		'react-search-autocomplete',
 		/@babel\/runtime/,
 		...lodashExternal,
 	],
