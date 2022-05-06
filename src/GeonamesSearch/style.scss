@@ -23,6 +23,14 @@ $height: 2.25rem;
   margin: 0;
 }
 
+.ptr-GeonamesSearch > div > .wrapper > div:last-child > ul {
+  padding-bottom: .5rem;
+}
+
+.ptr-GeonamesSearch > div > .wrapper > div:last-child > ul > li > div {
+  margin-left: .75rem;
+}
+
 .ptr-GeonamesSearch > div > .wrapper > div:last-child > ul > li > svg {
   display: none;
 }
@@ -36,6 +44,7 @@ $height: 2.25rem;
   padding: 0;
   height: $height;
   font-size: $a1;
+  color: var(--base90);
 }
 
 .ptr-GeonamesSearch > div > .wrapper > div > div:not(.line) {
@@ -48,10 +57,12 @@ $height: 2.25rem;
 
 // Suggestion Item
 .ptr-GeonamesSearchSuggestionItem-name {
-  font-size: $a1;
+  font-size: $b1;
+  color: var(--base90);
   font-weight: bold;
 }
 
 .ptr-GeonamesSearchSuggestionItem-description {
   font-size: $b1;
+  color: var(--base60);
 }

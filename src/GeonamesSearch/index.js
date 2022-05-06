@@ -23,11 +23,12 @@ const GeonamesSearch = ({
 	onPlaceSelect,
 	apiKey = geonamesApiKey,
 	apiUrl = geonamesApiUrl,
+	maxPlaces = 5,
 }) => {
 	const [items, onItemsChange] = useState([]);
 
 	const handleOnSearch = searchString => {
-		fetchGeonames(apiUrl, apiKey, searchString, onItemsChange);
+		fetchGeonames(apiUrl, apiKey, searchString, maxPlaces, onItemsChange);
 	};
 
 	const handleOnSelect = item => {
@@ -55,6 +56,7 @@ GeonamesSearch.propTypes = {
 	className: PropTypes.string,
 	apiKey: PropTypes.string,
 	apiUrl: PropTypes.string,
+	maxPlaces: PropTypes.number,
 	onPlaceSelect: PropTypes.func.isRequired,
 };
 

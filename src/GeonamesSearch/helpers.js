@@ -61,11 +61,18 @@ const preparePlaces = geonames => {
  * @param apiUrl {string} service url
  * @param apiKey {string} api authorization key
  * @param searchString {string} string to search
+ * @param maxItems {number} max number of items to be returned
  * @param handleItems {function} callback taking founded places as first argument
  */
-export const fetchGeonames = (apiUrl, apiKey, searchString, handleItems) => {
+export const fetchGeonames = (
+	apiUrl,
+	apiKey,
+	searchString,
+	maxItems,
+	handleItems
+) => {
 	fetch(
-		`${apiUrl}?q=${searchString}&fuzzy=0.7&maxRows=10&inclBbox=true&username=${apiKey}`
+		`${apiUrl}?q=${searchString}&fuzzy=0.7&maxRows=${maxItems}&inclBbox=true&username=${apiKey}`
 	)
 		.then(res => res.json())
 		.then(
