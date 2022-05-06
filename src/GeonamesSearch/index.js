@@ -24,6 +24,8 @@ const GeonamesSearch = ({
 	apiKey = geonamesApiKey,
 	apiUrl = geonamesApiUrl,
 	maxPlaces = 5,
+	hideSearchIcon,
+	placeholder = 'Search place...',
 }) => {
 	const [items, onItemsChange] = useState([]);
 
@@ -46,7 +48,9 @@ const GeonamesSearch = ({
 				inputDebounce={50}
 				onSearch={handleOnSearch}
 				onSelect={handleOnSelect}
+				placeholder={placeholder}
 				formatResult={SuggestionItem}
+				showIcon={!hideSearchIcon}
 			/>
 		</div>
 	);
@@ -56,8 +60,10 @@ GeonamesSearch.propTypes = {
 	className: PropTypes.string,
 	apiKey: PropTypes.string,
 	apiUrl: PropTypes.string,
+	hideSearchIcon: PropTypes.bool,
 	maxPlaces: PropTypes.number,
 	onPlaceSelect: PropTypes.func.isRequired,
+	placeholder: PropTypes.string,
 };
 
 export default GeonamesSearch;

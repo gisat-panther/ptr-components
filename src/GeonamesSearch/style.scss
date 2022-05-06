@@ -17,6 +17,7 @@ $height: 2.25rem;
   height: 100%;
   border-radius: calc(#{$height}/2);;
   align-items: center;
+  padding-left: .25rem;
 }
 
 .ptr-GeonamesSearch > div > .wrapper > div:last-child > div.line {
@@ -36,15 +37,20 @@ $height: 2.25rem;
 }
 
 .ptr-GeonamesSearch > div > .wrapper > div > svg {
-  margin: 0 .5rem;
+  margin: 0 0 0 .25rem;
 }
 
 .ptr-GeonamesSearch > div > .wrapper > div > input {
-  margin: 0;
+  margin: 0 0 0 .5rem;
   padding: .15rem 0 0 0;
   height: $height;
   font-size: $a1;
   color: var(--base90);
+}
+
+.ptr-GeonamesSearch > div > .wrapper > div > input::placeholder {
+  font-style: italic;
+  color: var(--base40);
 }
 
 .ptr-GeonamesSearch > div > .wrapper > div > div:not(.line) {
