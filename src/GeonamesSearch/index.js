@@ -23,7 +23,9 @@ const GeonamesSearch = ({
 	onPlaceSelect,
 	apiKey = geonamesApiKey,
 	apiUrl = geonamesApiUrl,
+	autoFocus,
 	maxPlaces = 5,
+	hideClearIcon,
 	hideSearchIcon,
 	placeholder = 'Search place...',
 }) => {
@@ -44,12 +46,14 @@ const GeonamesSearch = ({
 	return (
 		<div className={classes}>
 			<ReactSearchAutocomplete
+				autoFocus={autoFocus}
 				items={items}
 				inputDebounce={50}
 				onSearch={handleOnSearch}
 				onSelect={handleOnSelect}
 				placeholder={placeholder}
 				formatResult={SuggestionItem}
+				showClear={!hideClearIcon}
 				showIcon={!hideSearchIcon}
 			/>
 		</div>
@@ -57,9 +61,11 @@ const GeonamesSearch = ({
 };
 
 GeonamesSearch.propTypes = {
+	autoFocus: PropTypes.bool,
 	className: PropTypes.string,
 	apiKey: PropTypes.string,
 	apiUrl: PropTypes.string,
+	hideClearIcon: PropTypes.bool,
 	hideSearchIcon: PropTypes.bool,
 	maxPlaces: PropTypes.number,
 	onPlaceSelect: PropTypes.func.isRequired,
