@@ -33,7 +33,7 @@ const preparePlaces = geonames => {
 			description = `${description} (${details.join(', ')})`;
 		}
 
-		const pantherView = mapUtils.view.getViewFromBoundingBox(
+		const pantherMapView = mapUtils.view.getViewFromBoundingBox(
 			{
 				minLat: bbox?.south || Number(lat) - 0.001,
 				minLon: bbox?.east || Number(lng) - 0.001,
@@ -50,7 +50,7 @@ const preparePlaces = geonames => {
 			bbox,
 			lat,
 			lon: lng,
-			pantherView,
+			pantherMapView,
 			originalData: item,
 		};
 	});
