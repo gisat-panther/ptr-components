@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import React, {useState} from 'react';
 import {ReactSearchAutocomplete} from 'react-search-autocomplete';
 import {fetchGeonames} from './helpers';
@@ -18,6 +19,7 @@ const SuggestionItem = ({name, description}) => {
 };
 
 const GeonamesSearch = ({
+	className,
 	onPlaceSelect,
 	apiKey = geonamesApiKey,
 	apiUrl = geonamesApiUrl,
@@ -34,8 +36,10 @@ const GeonamesSearch = ({
 		}
 	};
 
+	const classes = classnames('ptr-GeonamesSearch', {}, className);
+
 	return (
-		<div className="ptr-GeonamesSearch">
+		<div className={classes}>
 			<ReactSearchAutocomplete
 				items={items}
 				inputDebounce={50}
@@ -48,6 +52,7 @@ const GeonamesSearch = ({
 };
 
 GeonamesSearch.propTypes = {
+	className: PropTypes.string,
 	apiKey: PropTypes.string,
 	apiUrl: PropTypes.string,
 	onPlaceSelect: PropTypes.func.isRequired,

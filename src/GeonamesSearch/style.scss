@@ -1,12 +1,50 @@
 @import '~@gisatcz/ptr-core/lib/styles/_variables';
 
+$height: 2.25rem;
+
 .ptr-GeonamesSearch {
   width: 20rem;
 }
 
 .ptr-GeonamesSearch > div > .wrapper {
   background: var(--base05);
+  border-radius: calc(#{$height}/2);
 }
+
+.ptr-GeonamesSearch > div > .wrapper > div:first-child {
+  display: flex;
+  min-height: $height;
+  height: 100%;
+  border-radius: calc(#{$height}/2);;
+  align-items: center;
+}
+
+.ptr-GeonamesSearch > div > .wrapper > div:last-child > div.line {
+  margin: 0;
+}
+
+.ptr-GeonamesSearch > div > .wrapper > div:last-child > ul > li > svg {
+  display: none;
+}
+
+.ptr-GeonamesSearch > div > .wrapper > div > svg {
+  margin: 0 .5rem;
+}
+
+.ptr-GeonamesSearch > div > .wrapper > div > input {
+  margin: 0;
+  padding: 0;
+  height: $height;
+  font-size: $a1;
+}
+
+.ptr-GeonamesSearch > div > .wrapper > div > div:not(.line) {
+  margin: 0 .5rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
 
 // Suggestion Item
 .ptr-GeonamesSearchSuggestionItem-name {
