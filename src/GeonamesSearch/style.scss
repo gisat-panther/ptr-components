@@ -9,6 +9,7 @@ $height: 2.25rem;
 .ptr-GeonamesSearch > div > .wrapper {
   background: var(--base05);
   border-radius: calc(#{$height}/2);
+  border: 1px solid var(--base30);
 }
 
 .ptr-GeonamesSearch > div > .wrapper > div:first-child {
@@ -22,6 +23,7 @@ $height: 2.25rem;
 
 .ptr-GeonamesSearch > div > .wrapper > div:last-child > div.line {
   margin: 0;
+  border-top-color: var(--base30);
 }
 
 .ptr-GeonamesSearch > div > .wrapper > div:last-child > ul {
@@ -32,6 +34,10 @@ $height: 2.25rem;
 
 .ptr-GeonamesSearch > div > .wrapper > div:last-child > ul > li > div {
   margin-left: .75rem;
+}
+
+.ptr-GeonamesSearch > div > .wrapper > div:last-child > ul > li.selected {
+  background: var(--base25);
 }
 
 .ptr-GeonamesSearch > div > .wrapper > div:last-child > ul > li > svg {
