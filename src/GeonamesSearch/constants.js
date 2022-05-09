@@ -1,2 +1,2 @@
 export const geonamesApiKey = 'pavel.vlach';
-export const geonamesApiUrl = 'http://api.geonames.org/searchJSON';
+export const geonamesApiUrl = 'https://secure.geonames.org/searchJSON';
