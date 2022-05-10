@@ -1,4 +1,5 @@
 import AppContainer from './AppContainer';
+import GeonamesSearch from './GeonamesSearch';
 import LoginOverlay from './LoginOverlay';
 import ScreenAnimator from './ScreenAnimator';
 import Screens from './Screens';
@@ -7,6 +8,7 @@ import WindowsContainer from './WindowsContainer';
 
 export {
 	AppContainer,
+	GeonamesSearch,
 	LoginOverlay,
 	ScreenAnimator,
 	Screens,
@@ -16,6 +18,7 @@ export {
 
 export default {
 	AppContainer,
+	GeonamesSearch,
 	LoginOverlay,
 	ScreenAnimator,
 	Screens,
