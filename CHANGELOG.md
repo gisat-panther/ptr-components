@@ -1,3 +1,15 @@
+# v1.4.0 (Tue May 10 2022)
+
+#### 🚀 Enhancement
+
+- Geonames search [#22](https://github.com/gisat-panther/ptr-components/pull/22) ([@vlach1989](https://github.com/vlach1989))
+
+#### Authors: 1
+
+- Pavel Vlach ([@vlach1989](https://github.com/vlach1989))
+
+---
+
 # v1.3.0 (Tue Oct 12 2021)
 
 #### 🚀 Enhancement
