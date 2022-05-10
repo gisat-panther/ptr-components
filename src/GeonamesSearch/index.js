@@ -7,15 +7,25 @@ import {geonamesApiKey, geonamesApiUrl} from './constants';
 
 import './style.scss';
 
-const SuggestionItem = ({name, description}) => {
-	return (
-		<div className="ptr-GeonamesSearchSuggestionItem">
-			<div className="ptr-GeonamesSearchSuggestionItem-name">{name}</div>
-			<div className="ptr-GeonamesSearchSuggestionItem-description">
-				{description}
+const SuggestionItem = ({name, description, info}) => {
+	if (info) {
+		return (
+			<div className="ptr-GeonamesSearchSuggestionItem is-disabled">
+				<div className="ptr-GeonamesSearchSuggestionItem-description">
+					{description}
+				</div>
 			</div>
-		</div>
-	);
+		);
+	} else {
+		return (
+			<div className="ptr-GeonamesSearchSuggestionItem">
+				<div className="ptr-GeonamesSearchSuggestionItem-name">{name}</div>
+				<div className="ptr-GeonamesSearchSuggestionItem-description">
+					{description}
+				</div>
+			</div>
+		);
+	}
 };
 
 const GeonamesSearch = ({

@@ -69,6 +69,10 @@ $height: 2.25rem;
 }
 
 // Suggestion Item
+.ptr-GeonamesSearchSuggestionItem.is-disabled {
+	pointer-events: none;
+}
+
 .ptr-GeonamesSearchSuggestionItem-name {
 	font-size: $b1;
 	color: var(--base90);
@@ -78,4 +82,9 @@ $height: 2.25rem;
 .ptr-GeonamesSearchSuggestionItem-description {
 	font-size: $b1;
 	color: var(--base60);
+}
+
+.ptr-GeonamesSearchSuggestionItem.is-disabled .ptr-GeonamesSearchSuggestionItem-description {
+	color: var(--base50);
+	font-style: italic;
 }
