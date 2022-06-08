@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {Rnd} from 'react-rnd';
@@ -12,59 +11,70 @@ const MIN_HEIGHT = 100;
 const MAX_WIDTH = 'auto';
 const MAX_HEIGHT = 'auto';
 
-class Window extends React.PureComponent {
-	static propTypes = {
-		containerHeight: PropTypes.number,
-		containerWidth: PropTypes.number,
-		content: PropTypes.oneOfType([PropTypes.element, PropTypes.array]),
-		icon: PropTypes.string,
-		onDragStart: PropTypes.func,
-		onDragStop: PropTypes.func,
-		onClick: PropTypes.func,
-		onCloseClick: PropTypes.func,
-		onResize: PropTypes.func,
-		title: PropTypes.string,
-		windowKey: PropTypes.string,
-		withoutHeader: PropTypes.bool,
-		zIndex: PropTypes.number,
+const Window = ({
+	containerHeight,
+	containerWidth,
+	content,
+	icon,
+	onDragStart,
+	onDragStop,
+	onClick,
+	onCloseClick,
+	onResize,
+	title,
+	windowKey,
+	withoutHeader,
+	height,
+	width,
+	minHeight,
+	minWidth,
+	maxHeight,
+	maxWidth,
+}) => {
+	const onClickSelf = () => {
+		if (onClick) {
+			onClick(windowKey);
+		}
 	};
 
-	constructor(props) {
-		super(props);
-
-		this.onDragStart = this.onDragStart.bind(this);
-		this.onDragStop = this.onDragStop.bind(this);
-		this.onClick = this.onClick.bind(this);
-		this.onClose = this.onClose.bind(this);
-		this.onResize = this.onResize.bind(this);
-	}
-
-	onClick() {
-		if (this.props.onClick) {
-			this.props.onClick(this.props.windowKey);
-		}
-	}
-
-	onClose(e) {
+	const onCloseSelf = e => {
 		e.stopPropagation();
-		if (this.props.onCloseClick) {
-			this.props.onCloseClick(this.props.windowKey);
+		if (onCloseClick) {
+			onCloseClick(windowKey);
 		}
-	}
+	};
 
-	onDragStart() {
-		if (this.props.onDragStart) {
-			this.props.onDragStart(this.props.windowKey);
+	const onDragStartSelf = () => {
+		if (onDragStart) {
+			onDragStart(windowKey);
 		}
-	}
+	};
 
-	onDragStop(e, data) {
-		let position = this.calculatePositionFromXY(
-			data.x,
-			data.y,
-			this.props.width,
-			this.props.height
-		);
+	const calculatePositionFromXY = (x, y, width, height) => {
+		const topDiff = y;
+		const bottomDiff = containerHeight - (y + height);
+		const leftDiff = x;
+		const rightDiff = containerWidth - (x + width);
+
+		const position = {top: null, bottom: null, left: null, right: null};
+
+		if (topDiff > bottomDiff && bottomDiff > 0) {
+			position.bottom = bottomDiff;
+		} else {
+			position.top = topDiff;
+		}
+
+		if (leftDiff > rightDiff && rightDiff > 0) {
+			position.right = rightDiff;
+		} else {
+			position.left = leftDiff;
+		}
+
+		return position;
+	};
+
+	const onDragStopSelf = (e, data) => {
+		let position = calculatePositionFromXY(data.x, data.y, width, height);
 
 		// TODO find better way
 		let isTargetCloseButton =
@@ -74,118 +84,62 @@ class Window extends React.PureComponent {
 		});
 
 		if (isTargetCloseButton || isParentCloseButton) {
-			this.onClose(e);
-		} else if (this.props.onDragStop) {
-			this.props.onDragStop(this.props.windowKey, position);
+			onCloseSelf(e);
+		} else if (onDragStop) {
+			onDragStop(windowKey, position);
 		}
-	}
+	};
 
-	onResize(e, direction, ref, delta, coord) {
-		if (this.props.onResize) {
-			let position = this.calculatePositionFromXY(
+	const onResizeSelf = (e, direction, ref, delta, coord) => {
+		if (onResize) {
+			let position = calculatePositionFromXY(
 				coord.x,
 				coord.y,
 				ref.offsetWidth,
 				ref.offsetHeight
 			);
 			// console.log(position, ref.offsetWidth, ref.offsetHeight , direction, delta);
-			this.props.onResize(
-				this.props.windowKey,
-				ref.offsetWidth,
-				ref.offsetHeight,
-				position
-			); // TODO check
+			onResize(windowKey, ref.offsetWidth, ref.offsetHeight, position); // TODO check
 		}
-	}
+	};
 
-	render() {
-		const props = this.props;
-		const handleClass = 'ptr-window-handle';
-
-		let classes = classNames('ptr-window', {
-			[handleClass]: !!this.props.withoutHeader,
-		});
-
-		let width = this.props.width ? this.props.width : 'auto';
-		let height = this.props.height ? this.props.height : 'auto';
-
-		if (width > this.props.containerWidth && this.props.containerWidth) {
-			width = this.props.containerWidth;
-		}
-
-		if (height > this.props.containerHeight && this.props.containerHeight) {
-			height = this.props.containerHeight;
-		}
-
-		let position = this.calculateXYfromPosition(width, height);
-
-		return (
-			<Rnd
-				bounds="parent"
-				className={classes}
-				dragHandleClassName={handleClass}
-				minWidth={props.minWidth ? props.minWidth : MIN_WIDTH}
-				minHeight={props.minHeight ? props.minHeight : MIN_HEIGHT}
-				maxWidth={props.maxWidth ? props.maxWidth : MAX_WIDTH}
-				maxHeight={props.maxHeight ? props.maxHeight : MAX_HEIGHT}
-				onDragStop={this.onDragStop}
-				onDragStart={this.onDragStart}
-				onClick={this.onClick}
-				onResize={this.onResize}
-				position={{
-					x: position.x,
-					y: position.y,
-				}}
-				size={{width, height}}
-			>
-				{this.props.withoutHeader
-					? this.renderControls(true)
-					: this.renderHeader(handleClass)}
-				{this.renderContent()}
-			</Rnd>
-		);
-	}
-
-	renderHeader(handleClass) {
-		let headerClasses = 'ptr-window-header ' + handleClass;
-
-		return (
-			<div className={headerClasses}>
-				<div className="ptr-window-title" title={this.props.title}>
-					{this.props.icon ? <Icon icon={this.props.icon} /> : null}
-					{this.props.title}
-				</div>
-				{this.renderControls()}
-			</div>
-		);
-	}
-
-	renderControls(fixed) {
+	const renderControls = fixed => {
 		let classes = classNames('ptr-window-controls', {
 			fixed: fixed,
 		});
 
 		return (
 			<div className={classes}>
-				<div className="ptr-window-control close" onClick={this.onClose}>
+				<div className="ptr-window-control close" onClick={onCloseSelf}>
 					<Icon icon="close" />
 				</div>
 			</div>
 		);
-	}
+	};
 
-	renderContent() {
-		return <div className="ptr-window-content">{this.props.content}</div>;
-	}
+	const renderHeader = handleClass => {
+		let headerClasses = 'ptr-window-header ' + handleClass;
 
-	calculateXYfromPosition(width, height) {
-		const containerWidth = this.props.containerWidth;
-		const containerHeight = this.props.containerHeight;
+		return (
+			<div className={headerClasses}>
+				<div className="ptr-window-title" title={title}>
+					{icon ? <Icon icon={icon} /> : null}
+					{title}
+				</div>
+				{renderControls()}
+			</div>
+		);
+	};
 
-		const top = this.props.position.top;
-		const bottom = this.props.position.bottom;
-		const left = this.props.position.left;
-		const right = this.props.position.right;
+	const renderContent = () => {
+		return <div className="ptr-window-content">{content}</div>;
+	};
+
+	const calculateXYfromPosition = (width, height) => {
+		const top = position.top;
+		const bottom = position.bottom;
+		const left = position.left;
+		const right = position.right;
 
 		let x = 0;
 		let y = 0;
@@ -219,33 +173,71 @@ class Window extends React.PureComponent {
 		}
 
 		return {x, y};
+	};
+
+	const handleClass = 'ptr-window-handle';
+
+	let classes = classNames('ptr-window', {
+		[handleClass]: !!withoutHeader,
+	});
+
+	let renderWidth = width ? width : 'auto';
+	let renderHeight = height ? height : 'auto';
+
+	if (renderWidth > containerWidth && containerWidth) {
+		renderWidth = containerWidth;
 	}
 
-	calculatePositionFromXY(x, y, width, height) {
-		const containerWidth = this.props.containerWidth;
-		const containerHeight = this.props.containerHeight;
-
-		let topDiff = y;
-		let bottomDiff = containerHeight - (y + height);
-		let leftDiff = x;
-		let rightDiff = containerWidth - (x + width);
-
-		let position = {top: null, bottom: null, left: null, right: null};
-
-		if (topDiff > bottomDiff && bottomDiff > 0) {
-			position.bottom = bottomDiff;
-		} else {
-			position.top = topDiff;
-		}
-
-		if (leftDiff > rightDiff && rightDiff > 0) {
-			position.right = rightDiff;
-		} else {
-			position.left = leftDiff;
-		}
-
-		return position;
+	if (renderHeight > containerHeight && containerHeight) {
+		renderHeight = containerHeight;
 	}
-}
+
+	let position = calculateXYfromPosition(renderWidth, renderHeight);
+
+	return (
+		<Rnd
+			bounds="parent"
+			className={classes}
+			dragHandleClassName={handleClass}
+			minWidth={minWidth ? minWidth : MIN_WIDTH}
+			minHeight={minHeight ? minHeight : MIN_HEIGHT}
+			maxWidth={maxWidth ? maxWidth : MAX_WIDTH}
+			maxHeight={maxHeight ? maxHeight : MAX_HEIGHT}
+			onDragStop={onDragStopSelf}
+			onDragStart={onDragStartSelf}
+			onClick={onClickSelf}
+			onResize={onResizeSelf}
+			position={{
+				x: position.x,
+				y: position.y,
+			}}
+			size={{renderWidth, renderHeight}}
+		>
+			{withoutHeader ? renderControls(true) : renderHeader(handleClass)}
+			{renderContent()}
+		</Rnd>
+	);
+};
+
+Window.propTypes = {
+	containerHeight: PropTypes.number,
+	containerWidth: PropTypes.number,
+	content: PropTypes.oneOfType([PropTypes.element, PropTypes.array]),
+	icon: PropTypes.string,
+	onDragStart: PropTypes.func,
+	onDragStop: PropTypes.func,
+	onClick: PropTypes.func,
+	onCloseClick: PropTypes.func,
+	onResize: PropTypes.func,
+	title: PropTypes.string,
+	windowKey: PropTypes.string,
+	withoutHeader: PropTypes.bool,
+	height: PropTypes.number,
+	width: PropTypes.number,
+	minWidth: PropTypes.number,
+	minHeight: PropTypes.number,
+	maxWidth: PropTypes.number,
+	maxHeight: PropTypes.number,
+};
 
 export default Window;
