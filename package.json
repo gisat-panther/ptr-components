@@ -15,7 +15,7 @@
 	},
 	"style": "dist/style.css",
 	"main": "dist/index.js",
-	"module": "dist/index.es.js",
+	"module": "lib/index.js",
 	"files": [
 		"dist",
 		"lib"
