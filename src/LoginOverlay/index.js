@@ -1,4 +1,4 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -7,117 +7,95 @@ import './style.scss';
 import {Button, Input} from '@gisatcz/ptr-atoms';
 import {withNamespaces} from '@gisatcz/ptr-locales';
 
-class LoginOverlay extends React.PureComponent {
-	static propTypes = {
-		onClose: PropTypes.func,
-		onLogin: PropTypes.func,
-		open: PropTypes.bool,
-		opening: PropTypes.bool,
-		loginRequired: PropTypes.bool,
-	};
+const LoginOverlay = ({onClose, onLogin, open, opening, loginRequired, t}) => {
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const [openState, setOpen] = useState(false);
 
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			email: '',
-			password: '',
-			open: false,
-		};
-
-		this.onChangeEmail = this.onChangeEmail.bind(this);
-		this.onChangePassword = this.onChangePassword.bind(this);
-		this.cancel = this.cancel.bind(this);
-		this.login = this.login.bind(this);
-	}
-
-	componentDidMount() {
-		if (this.props.opening) {
-			let self = this;
+	useEffect(() => {
+		if (opening) {
 			setTimeout(() => {
-				self.setState({open: true});
+				setOpen(true);
 			}, 10);
 		}
-	}
+	}, []);
 
-	onChangeEmail(value) {
-		this.setState({
-			email: value,
-		});
-	}
+	const onChangeEmail = value => {
+		setEmail(value);
+	};
 
-	onChangePassword(value) {
-		this.setState({
-			password: value,
-		});
-	}
+	const onChangePassword = value => {
+		setPassword(value);
+	};
 
-	login() {
-		this.props.onLogin(this.state.email, this.state.password);
-		this.closeOverlay();
-	}
+	const closeOverlay = () => {
+		setOpen(false);
 
-	cancel() {
-		this.closeOverlay();
-	}
-
-	closeOverlay() {
-		this.setState({
-			open: false,
-		});
-
-		if (this.props.onClose) {
-			let self = this;
+		if (onClose) {
 			setTimeout(() => {
-				self.props.onClose();
+				onClose();
 			}, 350);
 		}
-	}
+	};
 
-	render() {
-		const t = this.props.t;
+	const login = () => {
+		onLogin(email, password);
+		closeOverlay();
+	};
 
-		return (
-			<div
-				className={classNames('ptr-login-overlay', {
-					open: this.state.open || this.props.open,
-				})}
-			>
-				<div className="ptr-login">
-					<div>
-						<Input
-							inverted
-							email
-							transparent
-							placeholder="E-mail"
-							onChange={this.onChangeEmail}
-							value={this.state.email}
-						/>
-					</div>
-					<div>
-						<Input
-							inverted
-							password
-							transparent
-							placeholder={t('user.passphrase')}
-							onChange={this.onChangePassword}
-							value={this.state.password}
-						/>
-					</div>
-					<div>
-						<Button primary onClick={this.login}>
-							{t('user.login')}
+	const cancel = () => {
+		closeOverlay();
+	};
+
+	return (
+		<div
+			className={classNames('ptr-login-overlay', {
+				open: openState || open,
+			})}
+		>
+			<div className="ptr-login">
+				<div>
+					<Input
+						inverted
+						email
+						transparent
+						placeholder="E-mail"
+						onChange={onChangeEmail}
+						value={email}
+					/>
+				</div>
+				<div>
+					<Input
+						inverted
+						password
+						transparent
+						placeholder={t('user.passphrase')}
+						onChange={onChangePassword}
+						value={password}
+					/>
+				</div>
+				<div>
+					<Button primary onClick={login}>
+						{t('user.login')}
+					</Button>
+					{!loginRequired ? (
+						<Button invisible inverted onClick={cancel}>
+							{t('cancelCapitalized')}
 						</Button>
-						{!this.props.loginRequired ? (
-							<Button invisible inverted onClick={this.cancel}>
-								{t('cancelCapitalized')}
-							</Button>
-						) : null}
-					</div>
+					) : null}
 				</div>
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
+
+LoginOverlay.propTypes = {
+	onClose: PropTypes.func,
+	onLogin: PropTypes.func,
+	open: PropTypes.bool,
+	opening: PropTypes.bool,
+	loginRequired: PropTypes.bool,
+	t: PropTypes.func,
+};
 
 export default withNamespaces(['common'])(LoginOverlay);

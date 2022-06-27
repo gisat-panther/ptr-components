@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {ReactSearchAutocomplete} from 'react-search-autocomplete';
 import {fetchGeonames} from './helpers';
 import {geonamesApiKey, geonamesApiUrl} from './constants';
@@ -26,6 +26,12 @@ const SuggestionItem = ({name, description, info}) => {
 			</div>
 		);
 	}
+};
+
+SuggestionItem.propTypes = {
+	name: PropTypes.string,
+	description: PropTypes.string,
+	info: PropTypes.string,
 };
 
 const GeonamesSearch = ({
