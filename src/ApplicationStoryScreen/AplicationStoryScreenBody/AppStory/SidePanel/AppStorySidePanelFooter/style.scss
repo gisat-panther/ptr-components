@@ -1,0 +1,16 @@
+@use 'sass:math';
+@import '../../../../../../styles/variables';
+
+.ptr-AppStorySidePanelFooter {
+	padding: 0 m(1) 0 0;
+}
+
+.ptr-AppStorySidePanelFooter ul {
+	list-style: none;
+	@include maxWidth('x-small') {
+		font-size: $b1;
+	}
+	@include maxHeight('x-small') {
+		font-size: $b1;
+	}
+}

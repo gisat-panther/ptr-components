@@ -1,0 +1,23 @@
+@use 'sass:math';
+@import '../../../../../styles/variables';
+
+.ptr-AppStoryNavPanel {
+	width: $appStoryNavPanelWidth;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	@include minWidth('xxx-large') {
+		width: calc(#{$appStoryNavPanelWidth} + 2rem);
+	}
+	@include maxWidth('medium') {
+		height: calc(100% - 3rem);
+		position: absolute;
+	}
+	@include maxWidth('x-small') {
+		height: calc(100% - 2.75rem);
+	}
+	@include maxHeight('x-small') {
+		height: calc(100% - 2.75rem);
+	}
+}

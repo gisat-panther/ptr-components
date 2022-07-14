@@ -1,0 +1,42 @@
+@use 'sass:math';
+@import '../../../styles/variables';
+
+.cure-ApplicationStoryScreenBody {
+  height: calc(100% - #{m(2)});
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scroll-behavior:smooth;
+}
+
+.cure-ApplicationStoryScreenBody-content {
+  width: 100%;
+  height: 100%;
+}
+
+.ptr-AppStoryMainPanelFooterLink {
+	width: 100%;
+	height: 100%;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.ptr-AppStorySidePanelFooter ul {
+	list-style: disc;
+	margin-left: 15px;
+}
+
+.cure-Footer-policyText {
+	@include maxWidth('x-small') {
+		font-size: $b1;
+	}
+	@include maxHeight('x-small') {
+		font-size: $b1;
+	}
+}

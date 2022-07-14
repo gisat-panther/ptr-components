@@ -1,0 +1,62 @@
+@use 'sass:math';
+@import '../../../../styles/variables';
+
+.cure-ApplicationStoryNav {
+  padding: .5rem 1rem 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+
+  @include maxWidth('x-small') {
+    padding: .5rem .5rem 0;
+  }
+}
+
+.cure-ApplicationStoryNav-link, .cure-ApplicationStoryNav-link:visited {
+  display: flex;
+  color: $baseTextColor;
+  text-decoration: none;
+}
+
+.cure-ApplicationStoryNav-link {
+  @include maxWidth('medium') {
+    display: none;
+  }
+}
+
+.cure-ApplicationStoryNav-linkTitle {
+  margin-left: 5px;
+  font-size: $a1;
+  font-family: "Raleway", "Roboto", sans-serif;
+  font-weight: 600;
+}
+
+.cure-ApplicationStoryNav-divider {
+  color: $baseTextColor;
+  margin: 0 .5rem;
+  font-size: $a1;
+  font-weight: 400;
+
+  @include maxWidth('medium') {
+    display: none;
+  }
+}
+
+.cure-ApplicationStoryNav-title {
+  color: $baseTextColor;
+  font-size: $a1;
+  letter-spacing: 0.5px;
+  font-family: "Raleway", "Roboto", sans-serif;
+  font-weight: 700;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @include maxWidth('medium') {
+    font-size: $b1;
+  }
+}

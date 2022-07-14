@@ -1,0 +1,19 @@
+@use 'sass:math';
+@import '../../../../../styles/variables';
+
+.ptr-AppStoryMainPanel {
+	width: calc(100% - 25rem - #{$appStoryNavPanelWidth});
+	height: 100%;
+	@include maxWidth('medium') {
+		width: 100%;
+		height: 60%;
+		order: 1;
+		box-shadow: 0 3px 3px 0px rgba(0, 0, 0, 0.15);
+	}
+}
+
+.ptr-AppStoryMainPanel {
+	@include minWidth('xxx-large') {
+		width: calc(100% - 32rem - #{$appStoryNavPanelWidth});
+	}
+}
