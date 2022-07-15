@@ -1,5 +1,5 @@
 @use 'sass:math';
-@import '../../../styles/variables';
+@import '../styles/variables';
 
 .cure-ApplicationStoryScreenBody {
   height: calc(100% - #{m(2)});

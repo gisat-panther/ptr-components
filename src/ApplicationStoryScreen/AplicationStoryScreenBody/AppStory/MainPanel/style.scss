@@ -1,5 +1,5 @@
 @use 'sass:math';
-@import '../../../../../styles/variables';
+@import '../../../styles/variables';
 
 .ptr-AppStoryMainPanel {
 	width: calc(100% - 25rem - #{$appStoryNavPanelWidth});

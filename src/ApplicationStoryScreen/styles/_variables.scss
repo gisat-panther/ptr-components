@@ -1,0 +1,9 @@
+@use 'sass:math';
+@import '~@gisatcz/ptr-core/lib/styles/_variables';
+@import '~@gisatcz/visat-components/lib/styles/_variables';
+
+$indexScreenHorizontalPadding: m(math.div(4,3));
+$indexScreenHorizontalPadding_medium: m(math.div(2,3));
+
+$headerHeight: m(2);
+$appStoryNavPanelWidth: 2.5rem;
