@@ -1,36 +1,47 @@
-import {connect} from '@gisatcz/ptr-state';
-import Action from '../../../state/Action';
-import Select from '../../../state/Select';
-import Presentation from './presentation';
+import PropTypes from 'prop-types';
+import {useEffect} from 'react';
+import './style.scss';
 
-const mapStateToProps = state => {
-	const activeApplicationStoryKey = Select.router.getStory(state);
+const ApplicationStoryScreenBody = ({
+	children,
+	activeApplicationStoryKey,
+	activeScope,
+	onMount,
+	onUnmount,
+	onStoryKeyChange,
+}) => {
+	useEffect(() => {
+		if (onMount && typeof onMount === 'function') {
+			onMount(activeApplicationStoryKey);
+		}
 
-	return {
-		activeApplicationStoryKey,
-		activeScope:
-			Select.cure.applicationStories.getActiveScopeByApplicationStoryKey(
-				state,
-				activeApplicationStoryKey
-			),
-	};
+		if (onUnmount && typeof onUnmount === 'function') {
+			return onUnmount;
+		}
+	}, []);
+
+	useEffect(() => {
+		if (onStoryKeyChange && typeof onStoryKeyChange === 'function') {
+			onStoryKeyChange(activeApplicationStoryKey);
+		}
+	}, [activeApplicationStoryKey]);
+
+	return (
+		<div className="cure-ApplicationStoryScreenBody">
+			<div className="cure-ApplicationStoryScreenBody-content">
+				{activeScope ? children : null}
+			</div>
+		</div>
+	);
 };
 
-const mapDispatchToPropsFactory = () => {
-	const componentId = `ApplicationStoryBody`;
-	return dispatch => {
-		return {
-			onMount: storyKey => {
-				dispatch(Action.cure.applicationStories.use(storyKey, componentId));
-			},
-			onStoryKeyChange: storyKey => {
-				dispatch(Action.cure.applicationStories.use(storyKey, componentId));
-			},
-		};
-	};
+ApplicationStoryScreenBody.propTypes = {
+	activeApplicationStoryKey: PropTypes.string,
+	activeScope: PropTypes.object,
+	onMount: PropTypes.func,
+	onUnmount: PropTypes.func,
+	onStoryKeyChange: PropTypes.func,
+	children: PropTypes.any,
 };
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToPropsFactory
-)(Presentation);
+export default ApplicationStoryScreenBody;

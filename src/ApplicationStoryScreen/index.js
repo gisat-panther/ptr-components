@@ -1,15 +1,17 @@
-import {connect} from '@gisatcz/ptr-state';
-import Select from '../../state/Select';
-import Presentation from './presentation';
+import PropTypes from 'prop-types';
+import './style.scss';
 
-const mapStateToProps = state => {
-	return {
-		isReady: !!Select.app.getCompleteConfiguration(state),
-	};
+const ApplicationStoryScreen = ({isReady, children}) => {
+	return (
+		<div className="cure-ApplicationStoryScreen">
+			{isReady ? children : null}
+		</div>
+	);
 };
 
-const mapDispatchToProps = () => {
-	return {};
+ApplicationStoryScreen.propTypes = {
+	isReady: PropTypes.bool,
+	children: PropTypes.any,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Presentation);
+export default ApplicationStoryScreen;

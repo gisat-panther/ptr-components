@@ -5,10 +5,10 @@ import {TagsContainer, Tag} from '@gisatcz/visat-components';
 
 import './style.scss';
 
-const AppStoryTags = ({className, tags, onMount, onUnmount}) => {
+const AppStoryTags = ({className, tagKeys, tags, onMount, onUnmount}) => {
 	useEffect(() => {
 		if (onMount && typeof onMount === 'function') {
-			onMount();
+			onMount(tagKeys);
 		}
 
 		if (onUnmount && typeof onUnmount === 'function') {
@@ -29,6 +29,7 @@ AppStoryTags.propTypes = {
 	onMount: PropTypes.func,
 	onUnmount: PropTypes.func,
 	tags: PropTypes.array,
+	tagKeys: PropTypes.array,
 };
 
 export default AppStoryTags;
