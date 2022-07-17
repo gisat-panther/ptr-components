@@ -6,24 +6,24 @@ import Screens from './Screens';
 import User from './User';
 import WindowsContainer from './WindowsContainer';
 
-import ApplicationStoryScreen from './ApplicationStoryScreen';
-import ApplicationStoryScreenBody from './ApplicationStoryScreen/AplicationStoryScreenBody';
-import AppStoryBody from './ApplicationStoryScreen/AplicationStoryScreenBody/AppStory/presentation';
-import AppStoryMainPanel from './ApplicationStoryScreen/AplicationStoryScreenBody/AppStory/MainPanel/presentation';
-import AppStoryMainPanelIntro from './ApplicationStoryScreen/AplicationStoryScreenBody/AppStory/MainPanel/AppStoryMainPanelIntro/presentation';
-import AppStoryMainPanelFooter from './ApplicationStoryScreen/AplicationStoryScreenBody/AppStory/MainPanel/AppStoryMainPanelFooter/presentation';
-import AppStoryMainPanelFooterLink from './ApplicationStoryScreen/AplicationStoryScreenBody/AppStory/MainPanel/AppStoryMainPanelFooter/AppStoryMainPanelFooterLink/presentation';
-import AppStoryNavPanel from './ApplicationStoryScreen/AplicationStoryScreenBody/AppStory/NavPanel/presentation';
-import AppStorySidePanel from './ApplicationStoryScreen/AplicationStoryScreenBody/AppStory/SidePanel/presentation';
-import AppStorySidePanelCase from './ApplicationStoryScreen/AplicationStoryScreenBody/AppStory/SidePanel/AppStorySidePanelCase/presentation';
-import AppStorySidePanelFooter from './ApplicationStoryScreen/AplicationStoryScreenBody/AppStory/SidePanel/AppStorySidePanelFooter/presentation';
-import AppStorySidePanelIntro from './ApplicationStoryScreen/AplicationStoryScreenBody/AppStory/SidePanel/AppStorySidePanelIntro/presentation';
-import AppStoryFooterLinksList from './ApplicationStoryScreen/AplicationStoryScreenBody/AppStory/SidePanel/AppStorySidePanelFooter/AppStorySidePanelFooterLinksList/presentation';
-import AppStoryHeadline from './ApplicationStoryScreen/AplicationStoryScreenBody/components/AppStoryHeadline/presentation';
-import AppStorySubheadline from './ApplicationStoryScreen/AplicationStoryScreenBody/components/AppStorySubheadline/presentation';
-import AppStoryTags from './ApplicationStoryScreen/AplicationStoryScreenBody/components/AppStoryTags/presentation';
-import AppStoryParagraph from './ApplicationStoryScreen/AplicationStoryScreenBody/components/AppStoryParagraph/presentation';
-import AppStoryLink from './ApplicationStoryScreen/AplicationStoryScreenBody/components/AppStoryLink/presentation';
+import AppStory from './AppStory';
+import AppStoryBody from './AppStory/AppStoryBody';
+import AppStoryContent from './AppStory/AppStoryBody/content';
+import AppStoryMainPanel from './AppStory/AppStoryBody/content/MainPanel';
+import AppStoryMainPanelIntro from './AppStory/AppStoryBody/content/MainPanel/AppStoryMainPanelIntro';
+import AppStoryMainPanelFooter from './AppStory/AppStoryBody/content/MainPanel/AppStoryMainPanelFooter';
+import AppStoryMainPanelFooterLink from './AppStory/AppStoryBody/content/MainPanel/AppStoryMainPanelFooter/AppStoryMainPanelFooterLink';
+import AppStoryNavPanel from './AppStory/AppStoryBody/content/NavPanel';
+import AppStorySidePanel from './AppStory/AppStoryBody/content/SidePanel';
+import AppStorySidePanelCase from './AppStory/AppStoryBody/content/SidePanel/AppStorySidePanelCase';
+import AppStorySidePanelFooter from './AppStory/AppStoryBody/content/SidePanel/AppStorySidePanelFooter';
+import AppStorySidePanelIntro from './AppStory/AppStoryBody/content/SidePanel/AppStorySidePanelIntro';
+import AppStoryFooterLinksList from './AppStory/AppStoryBody/content/SidePanel/AppStorySidePanelFooter/AppStorySidePanelFooterLinksList';
+import AppStoryHeadline from './AppStory/AppStoryBody/content/components/AppStoryHeadline';
+import AppStorySubheadline from './AppStory/AppStoryBody/content/components/AppStorySubheadline';
+import AppStoryTags from './AppStory/AppStoryBody/content/components/AppStoryTags';
+import AppStoryParagraph from './AppStory/AppStoryBody/content/components/AppStoryParagraph';
+import AppStoryLink from './AppStory/AppStoryBody/content/components/AppStoryLink';
 
 export {
 	AppContainer,
@@ -33,9 +33,9 @@ export {
 	Screens,
 	User,
 	WindowsContainer,
-	ApplicationStoryScreen,
-	ApplicationStoryScreenBody,
+	AppStory,
 	AppStoryBody,
+	AppStoryContent,
 	AppStoryMainPanel,
 	AppStoryMainPanelIntro,
 	AppStoryMainPanelFooter,
@@ -61,9 +61,9 @@ export default {
 	Screens,
 	User,
 	WindowsContainer,
-	ApplicationStoryScreen,
-	ApplicationStoryScreenBody,
+	AppStory,
 	AppStoryBody,
+	AppStoryContent,
 	AppStoryMainPanel,
 	AppStoryMainPanelIntro,
 	AppStoryMainPanelFooter,

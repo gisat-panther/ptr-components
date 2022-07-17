@@ -1,0 +1,13 @@
+@use 'sass:math';
+@import '../../../../styles/variables';
+
+.ptr-AppStoryParagraph {
+	max-width: none;
+	margin-top: 1rem;
+	@include maxWidth('x-small') {
+		font-size: $b1;
+	}
+	@include maxHeight('x-small') {
+		font-size: $b1;
+	}
+}

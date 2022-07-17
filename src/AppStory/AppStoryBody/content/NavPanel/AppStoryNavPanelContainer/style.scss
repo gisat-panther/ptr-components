@@ -1,0 +1,29 @@
+@use 'sass:math';
+@import '../../../../styles/variables';
+
+.ptr-AppStoryNavPanelIcon {
+	color: var(--base100);
+}
+
+.ptr-AppStoryNavPanelIcon:hover {
+	background-color: transparent;
+	color: var(--accent60);
+}
+
+.ptr-dark .ptr-AppStoryNavPanelIcon:hover {
+	background-color: transparent;
+}
+
+.ptr-AppStoryNavPanelIcon.is-active {
+	color: var(--accent60);
+}
+
+.ptr-AppStoryNavPanelContainer {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	justify-content: center;
+	@include maxWidth('medium') {
+		height: 40%;
+	}
+}

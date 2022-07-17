@@ -1,0 +1,21 @@
+@use 'sass:math';
+@import '../../../../styles/variables';
+
+.ptr-AppStoryTags {
+    display: flex;
+	justify-content: center;
+	grid-gap: 1rem;
+}
+
+.ptr-AppStoryTags .ptr-Tag {
+	@include minWidth('xxx-large') {
+		padding: 1rem;
+		border-radius: 5rem;
+	}
+}
+
+.ptr-AppStoryTags .ptr-Tag .ptr-Tag-caption {
+	@include minWidth('xxx-large') {
+		font-size: $b2;
+	}
+}

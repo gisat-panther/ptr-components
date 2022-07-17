@@ -1,0 +1,12 @@
+@use 'sass:math';
+@import '../../styles/variables';
+
+.ptr-AppStoryContent {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-flow: row;
+	@include maxWidth('medium') {
+		flex-flow: column;
+	}
+}

@@ -1,0 +1,13 @@
+@use 'sass:math';
+@import '../../../../../styles/variables';
+
+.ptr-AppStorySidePanelFooterLinksList {
+	list-style: disc;
+	margin-left: 15px;
+	@include maxWidth('x-small') {
+		font-size: $b1;
+	}
+	@include maxHeight('x-small') {
+		font-size: $b1;
+	}
+}

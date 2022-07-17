@@ -1,0 +1,9 @@
+@use 'sass:math';
+@import './styles/variables';
+
+.ptr-AppStory {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

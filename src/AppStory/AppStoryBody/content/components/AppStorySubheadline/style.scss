@@ -1,0 +1,87 @@
+@use 'sass:math';
+@import '../../../../styles/variables';
+
+.ptr-AppStorySubheadline {
+	font-size: $b2;
+	@include minWidth('xxx-large') {
+		font-size: $b3;
+	}
+	@include maxWidth('small') {
+		margin: 1rem 0 1rem 0;
+	}
+	@include maxHeight('small') {
+		margin: 1rem 0 1rem 0;
+	}
+	@include maxWidth('x-small') {
+		font-size: $a1;
+	}
+	@include maxHeight('x-small') {
+		font-size: $a1;
+	}
+}
+
+.ptr-AppStorySubheadline.is-intro {
+	font-size: $b3;
+	color: white;
+	text-shadow: 2px 2px black;
+	margin: 0.5rem;
+	letter-spacing: 0.1rem;
+	@include minWidth('xxx-large') {
+		font-size: $a3;
+	}
+	@include maxWidth('small') {
+		font-size: $a2;
+	}
+	@include maxHeight('small') {
+		font-size: $a2;
+	}
+	@include maxWidth('x-small') {
+		font-size: $b2;
+	}
+	@include maxHeight('x-small') {
+		font-size: $b2;
+	}
+}
+
+.ptr-AppStorySubheadline.is-footerTitle {
+	font-size: $b3;
+	margin: 1rem;
+	letter-spacing: 0.1rem;
+	text-align: center;
+	@include minWidth('xxx-large') {
+		font-size: $b4;
+	}
+	@include maxWidth('medium') {
+		font-size: $a2;
+		margin: 1rem;
+		letter-spacing: 0.1rem;
+		text-align: center;
+	}
+	@include maxWidth('x-small') {
+		font-size: $b2;
+	}
+	@include maxHeight('x-small') {
+		font-size: $b2;
+	}
+}
+
+.ptr-AppStorySubheadline.is-footerLink {
+	font-size: $b2;
+	color: white;
+	text-shadow: 2px 2px black;
+	margin: 1rem;
+	letter-spacing: 0.1rem;
+	@include minWidth('xxx-large') {
+		font-size: $b3;
+	}
+	@include maxWidth('medium') {
+		margin: 0.5rem;
+		letter-spacing: 0.1rem;
+	}
+	@include maxWidth('x-small') {
+		font-size: $a1;
+	}
+	@include maxHeight('x-small') {
+		font-size: $a1;
+	}
+}
